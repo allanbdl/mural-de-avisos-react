@@ -13,12 +13,11 @@ function App() {
   const [admin, setAdmin] = useState(null)
   const [users, setUsers] = useState([])
 
-   useEffect(() => {
+  useEffect(() => {
     fetch('/api/in').then(res => res.json())
       .then(data => {
         if (data[0] === 'ok') {
           setIsLog(true)
-  
           fetch('/api/all').then(res => res.json())
             .then(data => setNotice(data))
         } else {
@@ -30,7 +29,9 @@ function App() {
   useEffect(() => {
     fetch('/api/admin').then(res => res.json())
       .then(data => {
-        if (data[0] === 'admin') setAdmin(true)
+        if (data[0] === 'admin') {
+          setAdmin(true)
+        }
         else setAdmin(false)
       })
   })
@@ -62,7 +63,7 @@ function App() {
     } else {
       return (
         <div className="container">
-          <Login isLog={isLog} setIsLog={setIsLog}  notice={notice} setNotice={setNotice}/>
+          <Login isLog={isLog} setIsLog={setIsLog} notice={notice} setNotice={setNotice} />
         </div>
       )
     }
