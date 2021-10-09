@@ -24,7 +24,7 @@ function App() {
           setIsLog(false)
         }
       })
-  }, [])
+  })
 
   useEffect(() => {
     fetch('/api/admin').then(res => res.json())

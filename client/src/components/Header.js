@@ -2,11 +2,12 @@ import React from 'react'
 import AddNotice from './AddNotice'
 
 export default function Header(props) {
+    let lockModeLog = false
     function logout() {
-        fetch('/api/logout')
-        props.setIsLog(false)
-        props.setAdmin(null)
-        props.setNotice([])
+        if (!lockModeLog) {
+            lockModeLog = true
+            fetch('/api/logout').then(() => {props.setIsLog(null)})}
+        else return
     }
 
     return (
@@ -15,10 +16,10 @@ export default function Header(props) {
                 <h1>Mural de Avisos</h1>
                 <div className='logout' onClick={logout}>Logout</div>
             </div>
-            {!props.admin ? <div/>:
-            <AddNotice modal={props.modal} setModal={props.setModal} admin={props.admin} />
+            {!props.admin ? <div /> :
+                <AddNotice modal={props.modal} setModal={props.setModal} admin={props.admin} />
             }
-            
+
         </header>
     )
 }
