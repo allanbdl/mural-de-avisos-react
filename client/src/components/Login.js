@@ -16,6 +16,9 @@ export default function Login(props) {
                 .then(data => {
                     if (data[0] === 'ok') {
                         props.setIsLog(true)
+
+                        fetch('/api/all').then(res => res.json())
+                        .then(data => props.setNotice(data))
                     }
                     else {
                         setError(false)

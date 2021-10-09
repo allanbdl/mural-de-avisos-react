@@ -6,6 +6,7 @@ export default function Header(props) {
         fetch('/api/logout')
         props.setIsLog(false)
         props.setAdmin(null)
+        props.setNotice([])
     }
 
     return (
