@@ -6,7 +6,7 @@ export default function Header(props) {
     function logout() {
         if (!lockModeLog) {
             lockModeLog = true
-            fetch('/api/logout').then(() => {props.setIsLog(null)})}
+            fetch('/api/logout').then(() => {props.setIsLog(false)})}
         else return
     }
 
