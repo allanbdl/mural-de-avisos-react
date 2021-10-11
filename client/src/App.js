@@ -24,7 +24,12 @@ function App() {
           setIsLog(false)
         }
       })
-  })
+  },[])
+
+  useEffect(() => {
+          fetch('/api/all').then(res => res.json())
+            .then(data => {if(data !== notice)setNotice(data)})
+  },[notice])
 
   useEffect(() => {
     fetch('/api/admin').then(res => res.json())
