@@ -33,6 +33,10 @@ app.post(`/login`, fun.loginPost)
 
 
 if (process.env.NODE_ENV != 'dev') {
+    app.use("*", (req, res, next) => {
+        if (req.headers['x-forwarded-proto'] == 'https') next()
+        else res.redirect('https://' + req.headers.host + req.originalUrl)
+    })
     app.use(express.static(path.join(__dirname, 'client/build')))
     app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client/build/index.html')))
 }
