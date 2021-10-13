@@ -24,6 +24,7 @@ module.exports.edit = (req, res) => {
 }
 
 module.exports.loginPost = (req, res) => {
+    req.body.name = req.body.name.toLowerCase()
     User.findOne({ name: req.body.name }).then(doc => {
         if (!doc) res.send(['user name or incorrect'])
         else {
@@ -73,6 +74,7 @@ module.exports.deleteUser = (req, res) => {
 }
 
 module.exports.registerPost = (req, res) => {
+    req.body.name = req.body.name.toLowerCase()
     User.findOne({ name: req.body.name }).then(doc => {
         if (doc) res.send([`user already exists`])
         else {
